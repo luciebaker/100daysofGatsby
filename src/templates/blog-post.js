@@ -34,23 +34,17 @@ class BlogPostTemplate extends React.Component {
         </article>
         <div className="container">
         <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
+          <ul className="prev-next-nav"
+            
           >
-            <li>
+            <li className="in-page-nav-left">
               {previous && (
-                <AniLink className="in-page-nav in-page-nav-left" fade to={previous.fields.slug} rel="prev">
+                <AniLink className="in-page-nav" fade to={previous.fields.slug} rel="prev">
                 <FaChevronCircleLeft className="link-icon"/> {previous.frontmatter.title}
                 </AniLink>
               )}
             </li>
-            <li >
+            <li className="in-page-nav-right">
               {next && (
                 <AniLink className="in-page-nav" fade to={next.fields.slug} rel="next">
                   {next.frontmatter.title} <FaChevronCircleRight className="link-icon"/>

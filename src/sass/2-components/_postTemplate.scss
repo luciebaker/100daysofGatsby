@@ -10,7 +10,7 @@
   background-color: #fff;
     border-left: 30px solid $mainColor;
     padding: 1.5rem 1.5rem .3rem 1.5rem;
-    margin: 3rem 1rem 1.5rem 1rem;
+    margin: 3rem 0 1.5rem 0;
 }
 
 .day-container-single h1 {
@@ -27,6 +27,12 @@
     font-size: 1.75rem;
     padding-bottom: 0.8rem;
     padding-top: 0.8rem;
+}
+
+@media (max-width: 575px) {
+  .day-container-single h2 {
+    font-size: 1.5rem;
+  }
 }
 
 .day-container-single blockquote {
@@ -84,6 +90,27 @@
   max-width: 500px;
 }
 
+.prev-next-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 775px) {
+  .prev-next-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.in-page-nav-left {
+  text-align: left;
+}
+.in-page-nav-right {
+  text-align: right;
+}
+
 .in-page-nav {
   color: $mainColor;
   font-family: Montserrat;
@@ -94,6 +121,13 @@
 
 .in-page-nav:hover {
   color: $darkBlue;
+}
+
+@media (max-width: 575px) {
+  .in-page-nav {
+    padding: 0;
+    font-size: 1rem;
+  }
 }
 
 

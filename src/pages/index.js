@@ -25,7 +25,8 @@ class BlogIndex extends React.Component {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <article key={node.fields.slug}>
-            <div className="container day-container text-left">
+            <div className="container">
+            <div className="day-container text-left">
             <AniLink fade to={node.fields.slug}>
             <h2>{title}</h2>
             </AniLink>
@@ -42,6 +43,7 @@ class BlogIndex extends React.Component {
                 <AniLink fade to={node.fields.slug}>
                 <h5 className="btn-text pb-1">Read More <FaChevronCircleRight className="link-icon"/></h5>
                 </AniLink>
+            </div>
             </div>
             </div>
             </article>

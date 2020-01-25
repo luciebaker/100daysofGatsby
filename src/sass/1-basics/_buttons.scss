@@ -13,3 +13,12 @@
 .btn-text:hover {
     color: $mainColor;
 }
+
+@media (max-width: 575px) {
+    .btn-text {
+        font-size: 1.1rem;
+    }
+    .link-icon {
+        font-size: 1.4rem;
+    }
+}
