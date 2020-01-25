@@ -1,8 +1,8 @@
 import React from "react"
 import "./bootstrap.min.css"
 import "../sass/layout.scss"
-import Navbar from "../components/global/navbar"
-import Footer from "../components/global/footer"
+import Navbar from "../components/global/Navbar"
+import Footer from "../components/global/Footer"
 
 class Layout extends React.Component {
   render() {

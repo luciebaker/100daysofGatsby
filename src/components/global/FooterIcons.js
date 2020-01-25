@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa'
 
 
-export default class NavbarIcons extends Component {
+export default class FooterIcons extends Component {
   state = {
     icons: [
       {

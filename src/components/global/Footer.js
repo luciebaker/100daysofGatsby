@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import logo from '../../images/LBMedia-logo.png'
 import AniLink from "gatsby-plugin-transition-link/AniLink"
-import FooterIcons from './footerIcons'
+import FooterIcons from './FooterIcons'
 
 
-export default class footer extends Component {
+export default class Footer extends Component {
     render() {
         return (
             
