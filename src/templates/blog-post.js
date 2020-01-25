@@ -1,16 +1,19 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
+import { graphql } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import SingleDaysHeader from "../components/utilities/100daysSingleHeader"
+import { FaChevronCircleRight, FaChevronCircleLeft, FaTwitter } from 'react-icons/fa'
+import Hero from "../components/utilities/Hero"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+
 
 class BlogPostTemplate extends React.Component {
   render() {
+    const BGimage = this.props.data.defaultBG.childImageSharp.fluid
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const { previous, next, readingTime } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -18,37 +21,18 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <article>
-          <header>
-            <h1
-              style={{
-                marginTop: rhythm(1),
-                marginBottom: 0,
-              }}
-            >
-              {post.frontmatter.title}
-            </h1>
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
-          </header>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <hr
-            style={{
-              marginBottom: rhythm(1),
-            }}
-          />
-          <footer>
-            <Bio />
-          </footer>
-        </article>
+        <Hero img={BGimage}>
+        <SingleDaysHeader title={post.frontmatter.title} subtitle={post.frontmatter.subtitle} author={post.frontmatter.author} date={post.frontmatter.date} readingTime={readingTime}/>
+        </Hero>
 
+        <article>
+          <div className="container">
+            <div className="day-container-single">
+            <section dangerouslySetInnerHTML={{ __html: post.html }} />
+            </div>
+            </div>
+        </article>
+        <div className="container">
         <nav>
           <ul
             style={{
@@ -61,20 +45,34 @@ class BlogPostTemplate extends React.Component {
           >
             <li>
               {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
+                <AniLink className="in-page-nav in-page-nav-left" fade to={previous.fields.slug} rel="prev">
+                <FaChevronCircleLeft className="link-icon"/> {previous.frontmatter.title}
+                </AniLink>
               )}
             </li>
-            <li>
+            <li >
               {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
+                <AniLink className="in-page-nav" fade to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} <FaChevronCircleRight className="link-icon"/>
+                </AniLink>
               )}
             </li>
           </ul>
         </nav>
+        </div>
+                <br />
+
+        <div className="text-center pt-3">
+        <AniLink fade to='/'>
+        <h5 className="btn-text mb-2">Return to #100 Days of Gatsby <FaChevronCircleRight className="link-icon"/></h5>
+        </AniLink>
+    </div>
+    <div className="container text-center mt-3 mb-3">
+    <h1 className="day-featured-text pt-2 pb-3">For quick daily updates, follow me on  <a href="https://twitter.com/LBMedia7" target="_blank" rel="noopener noreferrer"><FaTwitter className="day-icon" /></a> </h1>
+    </div>
+
+
+
       </Layout>
     )
   }
@@ -89,14 +87,23 @@ export const pageQuery = graphql`
         title
       }
     }
+    defaultBG: file(relativePath: {eq: "HeroBG.jpg"}) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        subtitle
+        date(formatString: "MMMM D, YYYY")
         description
+        author
       }
     }
   }

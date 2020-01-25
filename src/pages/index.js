@@ -1,10 +1,12 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
+import { graphql } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Layout from "../components/layout"
+import Hero from "../components/utilities/Hero"
+import DaysHeader from "../components/utilities/100daysHeader"
+import DaysInfo from "../components/utilities/100daysInfo"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import { FaTwitter, FaChevronCircleRight } from 'react-icons/fa'
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,34 +16,40 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
+        <SEO title="100 Days Of Gatsby" />
+        <Hero img={data.defaultBG.childImageSharp.fluid}>
+        <DaysHeader title="#100 Days of Gatsby" subtitle="Taking on the Challenge!" />
+        </Hero>
+        <DaysInfo />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <article key={node.fields.slug}>
-              <header>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </section>
+            <div className="container day-container text-left">
+            <AniLink fade to={node.fields.slug}>
+            <h2>{title}</h2>
+            </AniLink>
+            <h3>{node.frontmatter.subtitle}</h3>
+            <h6>
+            <span>By {node.frontmatter.author} </span> | <span>{node.frontmatter.date}</span>
+            </h6>
+            <p
+              dangerouslySetInnerHTML={{
+              __html: node.frontmatter.description || node.excerpt,
+              }}
+            />
+            <div className="text-right">
+                <AniLink fade to={node.fields.slug}>
+                <h5 className="btn-text pb-1">Read More <FaChevronCircleRight className="link-icon"/></h5>
+                </AniLink>
+            </div>
+            </div>
             </article>
           )
         })}
+        <div className="container text-center mt-5 mb-3">
+        <h1 className="day-featured-text pt-2 pb-3">For quick daily updates, follow me on  <a href="https://twitter.com/LBMedia7" target="_blank" rel="noopener noreferrer"><FaTwitter className="day-icon" /></a> </h1>
+    </div>
       </Layout>
     )
   }
@@ -56,6 +64,13 @@ export const pageQuery = graphql`
         title
       }
     }
+    defaultBG: file(relativePath: {eq: "HeroBG.jpg"}) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
@@ -64,9 +79,11 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMMM D, YYYY")
             title
+            subtitle
             description
+            author
           }
         }
       }

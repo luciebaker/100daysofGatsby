@@ -1,32 +1,20 @@
 import React from "react"
-import { graphql } from "gatsby"
-
+import NotFound from '../images/notFound.png'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-class NotFoundPage extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
+const NotFoundPage = () => (
+  <Layout>
+  <SEO title="404: Not found" />
+  <div className="container text-center">
+    <img className="notfound-img" src={NotFound} alt="Page Not Found"/>
+    </div>
+    <div className="container pb-4 text-center">
+    <h1 className="notfound-text">You just found a little corner of the web that doesn't exist...</h1>
+    <p>Don't worry... Just use the Navigation at the top of your screen to find your way back.</p>
+    </div>
+  </Layout>
+)
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      </Layout>
-    )
-  }
-}
 
 export default NotFoundPage
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

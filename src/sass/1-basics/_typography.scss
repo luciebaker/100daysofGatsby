@@ -1,0 +1,52 @@
+h1 {
+    font-family: Merriweather !important;
+    font-size: 2.2rem;
+    color: $darkBlue;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: Montserrat !important;
+    color: $mainColor;
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  h3 {
+    font-family: Montserrat !important;
+    margin-bottom: .4rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+  h4 {
+    font-family: Merriweather !important;
+    color: $mainColor;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    margin: 0;
+  }
+
+H5 {
+  font-family: Montserrat !important;
+}
+
+  h6 {
+    font-family: Montserrat !important;
+    font-size: 0.9rem;
+  }
+
+p {
+    font-family: Montserrat !important;
+    color: #000;
+}

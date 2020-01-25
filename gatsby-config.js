@@ -1,11 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    title: "100 Days of Gatsby",
+    titleTemplate: "%s | LB Media",
+    author: `Lucie B`,
+    description: "Taking on the 100 Day of Gatsby Challenge",
+    twitterUsername: "@LBMedia7",
+    image: '/LBMedia100.png',
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `@LBMedia7`,
     },
   },
   plugins: [
@@ -21,6 +24,28 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Montserrat`,
+            variants: [`400`, `500`, `600`]
+          },
+          {
+            family: `Merriweather`,
+            variants: [`400i`, `700i`]
+          },
+        ],
       },
     },
     {
@@ -42,11 +67,15 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-reading-time`,
         ],
       },
     },
+    `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-transition-link`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -63,7 +92,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `src/images/LBMedia-icon.svg`,
       },
     },
     `gatsby-plugin-react-helmet`,
