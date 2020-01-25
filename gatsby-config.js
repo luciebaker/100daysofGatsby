@@ -6,7 +6,7 @@ module.exports = {
     description: "Taking on the 100 Day of Gatsby Challenge",
     twitterUsername: "@LBMedia7",
     image: '/LBMedia100.png',
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://lb-100daysofgatsby.netlify.com`,
     social: {
       twitter: `@LBMedia7`,
     },
@@ -76,10 +76,19 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-transition-link`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://lb-100daysofgatsby.netlify.com',
+        sitemap: 'https://lb-100daysofgatsby.netlify.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: "UA-155102369-3",
       },
     },
     `gatsby-plugin-feed`,
